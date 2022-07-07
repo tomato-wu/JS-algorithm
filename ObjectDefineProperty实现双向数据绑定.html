@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" value="" name="txt" id="txt">
+    <p id="Show_text"></p>
+  </div>
+
+  <script>
+    var obj = {};
+    Object.defineProperty(obj, 'value', {
+      get: function () {
+        return obj;
+      },
+      set: function (newValue) {
+        document.getElementById('txt').value = newValue
+        document.getElementById('Show_text').innerHTML = newValue
+      },
+
+    })
+    document.addEventListener('keyup', function (e) {
+      obj.value = e.target.value
+    })
+  </script>
+</body>
+
+</html>
