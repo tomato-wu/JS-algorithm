@@ -1,22 +1,13 @@
 function bubbleSort(arr) {
-    // 两个数据进行交换
-    function exchange(v1, v2) {
-        let temp = arr[v1]
-        arr[v1] = arr[v2]
-        arr[v2] = temp
-    }
-
-    // 数组长度
-    let length = arr.length
-
-    for(let i = length - 1; i >= 0; i --) {
-        for(let j = 0; j < i; j ++) {
-            if(arr[j] > arr[j + 1]) {
-                exchange(j, j + 1)
+    var len = arr.length;
+    for (var i = 0; i < len - 1; i++) {
+        for (var j = 0; j < len - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) { // 相邻元素两两对比
+                var temp = arr[j + 1]; // 元素交换
+                arr[j + 1] = arr[j];
+                arr[j] = temp;
             }
         }
     }
-
-    // 返回最终数组
-    return arr   
+    return arr;
 }

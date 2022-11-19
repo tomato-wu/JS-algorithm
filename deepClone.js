@@ -1,7 +1,7 @@
 // 简单版本
-function deepClone1(obj) {
-  return JSON.parse(JSON.stringify(obj));
-}
+// function deepClone1(obj) {
+//   return JSON.parse(JSON.stringify(obj));
+// }
 
 // 面试版本
 // function deepClone(obj) {
@@ -24,34 +24,34 @@ function deepClone1(obj) {
 
 // }
 
-function deepClone(obj = {}){
-  if(typeof obj !== 'object' && obj == null){
+function deepClone(obj = {}) {
+  if (typeof obj !== 'object' && obj !== null) {
     return obj;
   }
 
   let result
 
-  if(obj instanceof Array){
+  if (obj instanceof Array) {
     result = []
-  }else{
+  } else {
     result = {}
   }
 
-  for(let key in obj){
-  if(obj.hasOwnProperty(key)){
-    result[key] = deepClone(obj[key]);
-  }    
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result[key] = deepClone(obj[key]);
+    }
   }
 
   return result;
 
 }
 
-obj = {
-  name:'kunyuan',
-  age:15,
-  da:{
-    name:'45'
+let obj = {
+  name: 'kunyuan',
+  age: 15,
+  da: {
+    name: '45'
   }
 };
 

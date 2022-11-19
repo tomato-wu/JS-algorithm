@@ -16,12 +16,12 @@
 // setInterval(fn, 2000)
 
 
-const debounce = (func, wait = 500) => {
-  var timer = 0
+const debounce = function (Fn, delay) {
+  let timer = 0
   return function (...args) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      func.apply(this, args);
-    }, wait)
+      Fn.apply(this, args);
+    }, delay);
   }
 }

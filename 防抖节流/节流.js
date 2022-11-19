@@ -1,4 +1,3 @@
-
 // 节流
 // 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
 
@@ -8,7 +7,7 @@
 const throttle = (func, wait = 500) => {
   // 上一次执行该函数的时间
   let lastTime = 0
-  return function(...args) {
+  return function (...args) {
     // 当前时间
     let now = +new Date()
     // 将当前时间和上一次执行函数时间对比
@@ -20,7 +19,9 @@ const throttle = (func, wait = 500) => {
   }
 }
 
-const fn = throttle(()=>{console.log(3);},3000)
+const fn = throttle(() => {
+  console.log(3);
+}, 3000)
 
 setInterval(fn, 2000)
 

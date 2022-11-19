@@ -15,7 +15,8 @@ function QuickSort(arr) {
             right.push(arr[i]);
         }
     }
-    return QuickSort(left).concat([pivot], QuickSort(right));
+    // return QuickSort(left).concat([pivot], QuickSort(right));
+    return [...QuickSort(left), pivot, ...QuickSort(right)]
 }
 let list = [4, 6, 8, 5, 9, 1, 2, 3, 2];
 
