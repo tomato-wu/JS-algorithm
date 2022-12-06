@@ -25,38 +25,27 @@
 // }
 
 function deepClone(obj = {}) {
-  if (typeof obj !== 'object' && obj !== null) {
-    return obj;
-  }
-
-  let result
-
-  if (obj instanceof Array) {
-    result = []
-  } else {
-    result = {}
-  }
+  if (typeof obj !== "object" && obj !== null) return obj;
+  let result = obj instanceof Array ? [] : {};
 
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       result[key] = deepClone(obj[key]);
     }
   }
-
   return result;
-
 }
 
 let obj = {
-  name: 'kunyuan',
+  name: "kunyuan",
   age: 15,
   da: {
-    name: '45'
-  }
+    name: "45",
+  },
 };
 
 let newObj = deepClone(obj);
-newObj.name = 'laj';
-newObj.da.name = 'aaaaaaaa'
+newObj.name = "laj";
+newObj.da.name = "aaaaaaaa";
 console.log(obj);
 console.log(newObj);

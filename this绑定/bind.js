@@ -1,14 +1,21 @@
-Function.prototype.myBind = function (context, ...outerArgs) {
-  // this->func context->obj outerArgs->[10,20]
-  let self = this
-
-  // 返回一个函数
-  return function F(...innerArgs) { //返回了一个函数，...innerArgs为实际调用时传入的参数
-    // 考虑new的方式
-    if(self instanceof F) {
-      return new self(...outerArgs, ...innerArgs)
-    }
-    // 把func执行，并且改变this即可
-    return self.apply(context, [...outerArgs, ...innerArgs]) //返回改变了this的函数，参数合并
-  }
-}
+const obj = {
+  name: "11",
+  fun() {
+    console.log(this.name);
+  },
+};
+Function.prototype._bind = function (ctx, ...args) {
+  // 获取函数体
+  const _self = this;
+  // 用一个新函数包裹，避免立即执行
+  const bindFn = (...reset) => {
+    return _self.call(ctx, ...args, ...reset);
+  };
+  return bindFn;
+};
+const obj2 = { name: "22" };
+obj.fun(); // 11
+const fn = obj.fun.bind(obj2);
+const fn2 = obj.fun._bind(obj2);
+fn(); // 22
+fn2(); // 22
