@@ -4,6 +4,7 @@ const obj = {
     console.log(this.name);
   },
 };
+
 Function.prototype._bind = function (ctx, ...args) {
   // 获取函数体
   const _self = this;

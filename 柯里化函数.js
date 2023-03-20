@@ -12,9 +12,12 @@ let sum = (a, b, c, d) => {
 
 // 柯里化函数，返回一个被处理过的函数
 
-// let curry = (fn,...args) => { // arr 记录已有参数
-//   return args.length >= fn.length ? fn(...args) : (...arr)=> curry(fn,...args.concat(...arr))
-// }
+let curry = (fn, ...args) => {
+  // arr 记录已有参数
+  return args.length >= fn.length
+    ? fn(...args)
+    : (...arr) => curry(fn, ...args.concat(...arr));
+};
 
 var sumPlus = curry(sum);
 
