@@ -1,19 +1,29 @@
-function myInstanceOf(left, right) {
-  let leftValue = left.__proto__;
-  let rightValue = right.prototype;
-
-  while (true) {
-    if (leftValue == null) return false;
-    if (leftValue === rightValue) {
+function myInstanceof(left, right) {
+  // 获取 right 的 prototype
+  let prototype = right.prototype;
+  
+  // 获取 left 的 __proto__
+  let proto = left.__proto__;
+  
+  // 遍历原型链，直到找到相同的原型或到达 null
+  while (proto !== null) {
+    if (proto === prototype) {
       return true;
     }
-    leftValue = leftValue.__proto__;
+    proto = proto.__proto__;
   }
+  
+  // 如果没有找到相同的原型，则返回 false
+  return false;
 }
 
-function getType(type) {
-  return Object.prototype.toString.call(type).slice(8, -1);
-}
+// 示例
+class Animal {}
+class Dog extends Animal {}
 
-console.log(myInstanceOf(Object, Function));
-console.log(getType(1));
+const dog = new Dog();
+
+console.log(myInstanceof(dog, Dog)); // true
+console.log(myInstanceof(dog, Animal)); // true
+console.log(myInstanceof(dog, Object)); // true
+console.log(myInstanceof(dog, String)); // false

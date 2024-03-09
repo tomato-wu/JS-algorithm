@@ -4,17 +4,29 @@
 
 // func是用户传入需要防抖的函数
 // wait是等待时间
-const throttle = (func, wait = 500) => {
-  // 上一次执行该函数的时间
+// const throttle = (func, wait = 500) => {
+//   // 创建一个变量 lastTime 来保存上次执行 func 的时间
+//   let lastTime = 0
+//   // 返回一个新的函数
+//   return function (...args) {
+//     // 当前时间
+//     let now = +new Date()
+//     // 将当前时间和上一次执行函数时间对比
+//     // 如果差值大于设置的等待时间就执行函数
+//     if (now - lastTime > wait) {
+//       lastTime = now
+//       func.apply(this, args)
+//     }
+//   }
+// }
+
+const throttle = (Fn, wait = 500) => {
   let lastTime = 0
   return function (...args) {
-    // 当前时间
     let now = +new Date()
-    // 将当前时间和上一次执行函数时间对比
-    // 如果差值大于设置的等待时间就执行函数
     if (now - lastTime > wait) {
       lastTime = now
-      func.apply(this, args)
+      Fn.apply(this,args)
     }
   }
 }

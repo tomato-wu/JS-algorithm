@@ -1,8 +1,6 @@
-// 第一题
-function sayHi() {
-  console.log(name); // undefined
-  console.log(age); // ReferenceError: Cannot access 'age' before initialization
-  var name = "Lyric";
-  let age = 19;
+function myNew(Fn, ...args) {
+  let obj = {}
+  obj.__proto__ = Fn.prototype
+  let res = Fn.apply(obj, args)
+  return res instanceof Object ? res : obj
 }
-sayHi();

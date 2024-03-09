@@ -1,22 +1,19 @@
-const obj = {
-  name: "11",
-  fun() {
-    console.log(this.name);
-  },
+Function.prototype.myBind = function (context, ...args) {
+  // 保存当前函数的引用
+  const self = this;
+
+  return function (...innerArgs) {
+    // 使用 apply 方法调用函数，并设置 this 上下文和参数
+    return self.apply(context, args.concat(innerArgs));
+  };
 };
 
-Function.prototype._bind = function (ctx, ...args) {
-  // 获取函数体
-  const _self = this;
-  // 用一个新函数包裹，避免立即执行
-  const bindFn = (...reset) => {
-    return _self.call(ctx, ...args, ...reset);
-  };
-  return bindFn;
-};
-const obj2 = { name: "22" };
-obj.fun(); // 11
-const fn = obj.fun.bind(obj2);
-const fn2 = obj.fun._bind(obj2);
-fn(); // 22
-fn2(); // 22
+// 示例
+function greet(greeting, punctuation) {
+  console.log(greeting + ', ' + this.name + punctuation);
+}
+
+const person = { name: 'John' };
+const boundGreet = greet.myBind(person, 'Hello');
+
+boundGreet('!'); // 输出: Hello, John!

@@ -1,4 +1,3 @@
-// 快速排序
 function QuickSort(arr) {
   const n = arr.length;
   if (n <= 1) return arr;
