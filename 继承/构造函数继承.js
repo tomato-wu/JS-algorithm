@@ -1,19 +1,12 @@
-function Parent(){
-  this.name = 'parent1';
+
+// 构造函数继承是通过在子类的构造函数中调用父类的构造函数来实现的。这种方式的优点是可以避免原型链继承的问题，但缺点是无法继承父类原型上的方法。
+function Parent() {
+    this.name = 'parent';
 }
 
-Parent.prototype.getName = function () {
-  return this.name;
+function Child() {
+    Parent.call(this);
 }
 
-function Child(){
-  Parent.call(this);
-  this.type = 'child'
-}
-
-let child = new Child();
-
-console.log(child);
-
-// 缺点 ：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法
-console.log(child.getName());
+var child1 = new Child();
+console.log(child1.name); // 'parent'
